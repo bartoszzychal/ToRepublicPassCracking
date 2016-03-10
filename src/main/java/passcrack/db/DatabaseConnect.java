@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import passcrack.user.User;
+import passcrack.writer.Writer;
 
 public class DatabaseConnect {
 	private final static String USER = "user=";
@@ -17,7 +18,7 @@ public class DatabaseConnect {
 
 	private String databaseConnectLink = null;
 	private String driver = null;
-
+	
 	public void preprareConnectingWithDatabase(String driver, String DBaddress, String user, String password) {
 		databaseConnectLink = DBaddress + USER + user + PASSWORD + password + SSL;
 		this.driver = driver;

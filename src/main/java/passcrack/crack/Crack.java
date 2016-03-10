@@ -35,17 +35,21 @@ public class Crack implements Runnable {
 
 	public void decode() throws IOException, Exception {
 		long start = System.currentTimeMillis();
-		writer.write("Password;User id;username;email;hash sha1(salt+sha1(Password));salt",null);
+		writer.write("Password;User id;username;email;hash sha1(salt+sha1(Password));salt");
 		while (dictionaryReader.ready()) {
 			String word = dictionaryReader.readWord();
 			String sha1 = Encoder.encode(word);			
-			pass_users.parallelStream().forEach((user)->{
+			pass_users.parallelStream()
+			.filter(u -> !u.isDecode())
+			.forEach((user)->{
 				String encodeSaltSha1 = Encoder.encode(user.getSalt().concat(sha1));
 				if (user.getPassword().equals(encodeSaltSha1)) {
 					System.out.println(word+";"+user+" "+(System.currentTimeMillis()-start));
 					writer.write(word, user);
+					user.setDecode(true);
 				}
 			});
+			
 		}
 	}
 

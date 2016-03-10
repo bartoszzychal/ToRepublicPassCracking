@@ -16,6 +16,7 @@ public class CrackThread {
 	private static final String WYNIK_PATH = "C:\\Users\\ZBARTOSZ\\workspace_db\\torepublic_code\\torepublicpasscrack\\wynik_";
 	private static final String GIGANT_BASE_TXT = "gigant_base.txt";
 	private static final String MEDIUM_BASE_TXT = "medium_base.txt";
+	private static final String DATA_TXT = "data.txt";
 	private static final String DIRECTORY_PATH = "C:\\Users\\ZBARTOSZ\\workspace_db\\torepublic_code\\torepublicpasscrack\\";
 	private Crack crack;
 	
@@ -26,7 +27,7 @@ public class CrackThread {
 		Writer writer = new Writer();
 		try {
 			dictionaryReader.prepare(
-					DIRECTORY_PATH + MEDIUM_BASE_TXT);
+					DIRECTORY_PATH + DATA_TXT);
 			writer.prepare(WYNIK_PATH +dateFormat.format(new Date()) + ".csv");
 		} catch (IOException e) {
 			e.printStackTrace();

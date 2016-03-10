@@ -22,6 +22,17 @@ public class Writer {
 		}
 	}
 	
+	public void write(String word){
+		try {
+			bw.write(word);
+			bw.newLine();
+			bw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void prepare(String fileName) throws IOException {
 		this.file = new File(fileName);
 		if(!file.exists()){
