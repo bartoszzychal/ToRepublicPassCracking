@@ -17,9 +17,6 @@ public class DictionaryReader {
 	}
 
 	public String readWord() throws Exception{
-		if(br == null){
-			throw new Exception("DictionaryReader not prepare. First use prepare(String fileName) method.");
-		}
 		String word = null;
 		if(br.ready()){
 			word = br.readLine();

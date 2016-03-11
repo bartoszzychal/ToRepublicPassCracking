@@ -9,15 +9,10 @@ import java.util.concurrent.Executors;
 
 import passcrack.DictionaryReader.DictionaryReader;
 import passcrack.crack.Crack;
+import passcrack.utils.Utils;
 import passcrack.writer.Writer;
 
 public class CrackThread {
-
-	private static final String WYNIK_PATH = "C:\\Users\\ZBARTOSZ\\workspace_db\\torepublic_code\\torepublicpasscrack\\wynik_";
-	private static final String GIGANT_BASE_TXT = "gigant_base.txt";
-	private static final String MEDIUM_BASE_TXT = "medium_base.txt";
-	private static final String DATA_TXT = "data.txt";
-	private static final String DIRECTORY_PATH = "C:\\Users\\ZBARTOSZ\\workspace_db\\torepublic_code\\torepublicpasscrack\\";
 	private Crack crack;
 	
 	public void init() {
@@ -27,8 +22,8 @@ public class CrackThread {
 		Writer writer = new Writer();
 		try {
 			dictionaryReader.prepare(
-					DIRECTORY_PATH + DATA_TXT);
-			writer.prepare(WYNIK_PATH +dateFormat.format(new Date()) + ".csv");
+					Utils.DICTIONARY_PATH + Utils.MEDIUM_BASE+Utils.TXT);
+			writer.prepare(Utils.WYNIK_PATH+Utils.WYNIK_FILENAME +dateFormat.format(new Date()) + Utils.CSV);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

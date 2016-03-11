@@ -31,12 +31,39 @@ public class Writer {
 			e.printStackTrace();
 		}
 	}
+	public void write_(String word){
+		try {
+			bw.write(word);
+			bw.newLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void flush(){
+		try {
+			bw.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void close(){
+		try {
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	public void prepare(String fileName) throws IOException {
 		this.file = new File(fileName);
 		if(!file.exists()){
 			file.createNewFile();
+		}else{
+			throw new IOException("File exists");
 		}
 		fw = new FileWriter(file);
 		bw = new BufferedWriter(fw);
