@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class DictionaryReader {
+public class Reader {
 
 	private BufferedReader br;
 
@@ -16,18 +16,19 @@ public class DictionaryReader {
 		br = new BufferedReader(fileReader);
 	}
 
-	public String readWord() throws Exception{
-		String word = null;
-		if(br.ready()){
-			word = br.readLine();
-		}else{
-			br.close();
-			System.out.println("End file");
-		}
-		return word;
+	public String readLine() throws Exception{
+		return br.readLine();
 	}
 	
 	public boolean ready() throws IOException{
 		return br.ready();
+	}
+	public void close() throws IOException{
+		br.close();
+	}
+	public void skip(int skippedLines) throws IOException{
+		for(int i=0;i<skippedLines&&br.ready();i++){
+			br.readLine();
+		}
 	}
 }

@@ -2,7 +2,7 @@ package passcrack.data;
 
 import java.io.IOException;
 
-import passcrack.DictionaryReader.DictionaryReader;
+import passcrack.DictionaryReader.Reader;
 import passcrack.utils.Utils;
 import passcrack.writer.Writer;
 
@@ -10,7 +10,7 @@ public class DataSpliter {
 	
 
 	private static final int PART_20000000_WORDS = 20000000;
-	private DictionaryReader dr = new DictionaryReader();
+	private Reader dr = new Reader();
 	private Writer wr = new Writer();
 	
 	public void splitTheBigFile() throws Exception{
@@ -20,7 +20,7 @@ public class DataSpliter {
 			wr.prepare(Utils.DICTIONARY_PATH+Utils.GIGANT_BASE_PART+counter+Utils.TXT);
 			counter=counter+1;
 			for (int i = 0; i < PART_20000000_WORDS; i++) {
-				wr.write_(dr.readWord());
+				wr.write_(dr.readLine());
 			}
 			wr.flush();
 			wr.close();

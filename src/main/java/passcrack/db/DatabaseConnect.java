@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import passcrack.user.User;
-import passcrack.writer.Writer;
 
 public class DatabaseConnect {
 	private final static String USER = "user=";
@@ -40,7 +40,7 @@ public class DatabaseConnect {
 	private List<User> query(Connection con) throws SQLException {
 		List<User> users = null;
 		try (PreparedStatement ps = con
-				.prepareStatement("select id, username, email, password, salt from users where id!=1")) {
+				.prepareStatement("select user_id, username, email, password, salt from users_password where dpassword is null")) {
 			ResultSet result = ps.executeQuery();
 			users = getList2(result);
 		}
@@ -54,5 +54,32 @@ public class DatabaseConnect {
 			users.add(new User(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5)));
 		}
 		return users;
+	}
+	
+	public void updateUserData(final User user,final String password){
+		Logger log = Logger.getLogger(getClass().getName());
+		try (Connection con = DriverManager.getConnection(databaseConnectLink)) {
+			prepareUpdate(user, password, log, con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	private void prepareUpdate(final User user, final String password, Logger log, Connection con) throws SQLException {
+		try (PreparedStatement ps = con
+				.prepareStatement("update users_password set dpassword=? where user_id=? and password=? and salt=?")) {
+			prepareStatment(user, password, ps);
+			int executeUpdate = ps.executeUpdate();
+			if (executeUpdate==0) {
+				log.warning(ps + " not execute!!!");
+			}else{
+				log.info(ps +" execute. OK");
+			}
+		}
+	}
+	private void prepareStatment(final User user, final String password, PreparedStatement ps) throws SQLException {
+		ps.setString(1, password);
+		ps.setLong(2, user.getId());
+		ps.setString(3, user.getPassword());
+		ps.setString(4, user.getSalt());
 	}
 }

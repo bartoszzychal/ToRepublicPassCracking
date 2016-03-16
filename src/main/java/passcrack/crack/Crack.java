@@ -6,26 +6,25 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
-import passcrack.DictionaryReader.DictionaryReader;
+import passcrack.DictionaryReader.Reader;
 import passcrack.db.DatabaseConnect;
 import passcrack.encoder.Encoder;
 import passcrack.user.User;
+import passcrack.utils.Utils;
 import passcrack.writer.Writer;
 
 public class Crack implements Runnable {
 
-	private final static String COM_MYSQL_JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private final static String JDBC_MYSQL_LOCALHOST_DATABASE = "jdbc:mysql://localhost/forum?";
-	private final static String user = "root";
-	private final static String password = "capgemini";
+	private static final int WORD_DICTIONARY = 20000000;
+	
 	private List<User> pass_users;
 
 	private final DatabaseConnect database = new DatabaseConnect();
-	private DictionaryReader dictionaryReader = null;
+	private Reader dictionaryReader = null;
 	private Writer writer = null;
 
 	public Crack() {
-		database.preprareConnectingWithDatabase(COM_MYSQL_JDBC_DRIVER, JDBC_MYSQL_LOCALHOST_DATABASE, user, password);
+		database.preprareConnectingWithDatabase(Utils.COM_MYSQL_JDBC_DRIVER, Utils.JDBC_MYSQL_LOCALHOST_DATABASE, Utils.user, Utils.password);
 		try {
 			pass_users = database.getListOfUser();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -34,30 +33,37 @@ public class Crack implements Runnable {
 	}
 
 	public void decode() throws IOException, Exception {
+		long word_cunter = 0;
 		long start = System.currentTimeMillis();
 		writer.write("Password;User id;username;email;hash sha1(salt+sha1(Password));salt");
+		int skipped_word = (int)(0.55*WORD_DICTIONARY);
+		dictionaryReader.skip(skipped_word);
+		word_cunter=+skipped_word;
 		while (dictionaryReader.ready()) {
-			String word = dictionaryReader.readWord();
+			String word = dictionaryReader.readLine();
+			word_cunter= word_cunter+1;
+			if(word_cunter%200000 == 0){
+				System.out.println((word_cunter*100/WORD_DICTIONARY)+"%"+" "+(System.currentTimeMillis()-start));
+			}
 			String sha1 = Encoder.encode(word);			
 			pass_users.parallelStream()
-			.filter(u -> !u.isDecode())
 			.forEach((user)->{
 				String encodeSaltSha1 = Encoder.encode(user.getSalt().concat(sha1));
 				if (user.getPassword().equals(encodeSaltSha1)) {
-					System.out.println(word+";"+user+" "+(System.currentTimeMillis()-start));
+					database.updateUserData(user, word);
 					writer.write(word, user);
-					user.setDecode(true);
 				}
 			});
 			
 		}
+		dictionaryReader.close();
 	}
 
 	public void setWriter(Writer wr) {
 		this.writer = wr;
 	}
 
-	public void setDictionaryReader(DictionaryReader dr) {
+	public void setDictionaryReader(Reader dr) {
 		this.dictionaryReader = dr;
 	}
 

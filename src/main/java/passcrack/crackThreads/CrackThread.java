@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import passcrack.DictionaryReader.DictionaryReader;
+import passcrack.DictionaryReader.Reader;
 import passcrack.crack.Crack;
 import passcrack.utils.Utils;
 import passcrack.writer.Writer;
@@ -18,16 +18,20 @@ public class CrackThread {
 	public void init() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		crack = new Crack();
-		DictionaryReader dictionaryReader = new DictionaryReader();
+		Reader dictionaryReader = new Reader();
 		Writer writer = new Writer();
+		//String dictionary = Utils.MEDIUM_BASE;
+		String dictionary2 = Utils.GIGANT_BASE_PART+62;
 		try {
 			dictionaryReader.prepare(
-					Utils.DICTIONARY_PATH + Utils.MEDIUM_BASE+Utils.TXT);
-			writer.prepare(Utils.WYNIK_PATH+Utils.WYNIK_FILENAME +dateFormat.format(new Date()) + Utils.CSV);
+					Utils.DICTIONARY_PATH + dictionary2+Utils.TXT);
+//			dictionaryReader.prepare(
+//					Utils.DICTIONARY_PATH + dictionary+Utils.TXT);
+			//writer.prepare(Utils.WYNIK_PATH+Utils.WYNIK_FILENAME +dateFormat.format(new Date())+ "_used_dic_"+ dictionary+ Utils.CSV);
+			writer.prepare(Utils.WYNIK_PATH+Utils.WYNIK_FILENAME +dateFormat.format(new Date())+ "_used_dic_"+ dictionary2+ Utils.CSV);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		crack.setDictionaryReader(dictionaryReader);
 		crack.setWriter(writer);
 	}

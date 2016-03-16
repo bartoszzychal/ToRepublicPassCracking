@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import passcrack.DictionaryReader.DictionaryReader;
+import passcrack.DictionaryReader.Reader;
 import passcrack.crack.Crack;
 import passcrack.writer.Writer;
 
@@ -22,7 +22,7 @@ public class CrackTest {
 	@Test
 	public void test() throws Exception {
 		Crack crack = new Crack();
-		DictionaryReader dictionaryReader = new DictionaryReader();
+		Reader dictionaryReader = new Reader();
 		dictionaryReader.prepare(
 				"C:\\Users\\ZBARTOSZ\\workspace_db\\torepublic_code" + "\\torepublicpasscrack\\medium_base.txt");
 		Writer writer = new Writer();
