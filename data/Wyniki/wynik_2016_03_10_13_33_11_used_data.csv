@@ -1,0 +1,14 @@
+Password;User id;username;email;hash sha1(salt+sha1(Password));salt
+dupa;118;testerbankowosci;testerbankowosci@tormail.org;bc52b844204ecf8cf470de0ced1841e12bcb6ed7;v(pE/ul-Yp.H
+test;142;banderas;banderas@test.pl;b52dbdbb267919bec18226fe2deaefe2c5c78b12;JQTg3a.K<x|m
+test;240;testgpguser2;testgpguser2@mydomain.uk;3e0fb8f5b44919835dd8fe84405936e9d527aaba;:Fo=$Wp9&hdl
+test;442;testowykupiecbezzaproszen;testowykupiecbezzaproszenia@wp.pl;ee804247fafd887023f90d8a38315726db1b4690;h=,jT:N.fFm.
+test;3;dupa;dupa@dupa.pl;ad66bec7ab0b3247348d8736ded2cdaab8af98d3;K[jA|au3"39C
+test;333;300Tysi?cyNasB?dzie;300tysiecy@wp.pl;f5a69b75cb541375f2950e28a0c92d9dea4bb0be;Y(<f4g1,`qS$
+test;8;PabloEscobar;pabloescobar@tormail.org;6815b2bbcf78d25cccae7472dbe5de67f6a819a2;x#Pez$_33ET(
+test;332;300NasBy?o;300nasbylo@wp.pl;680b409140ece3ca15e12e18bb53375e6b6646a8;YD-ZduE?Fz~,
+kris1992;203;kris1992;kris1992@tormail.org;8a0d8466e69c496d47c84f42aaf878e032bb9e8e;fn3}J$a@K"].
+polska;133;polska;polska@byla.polska;b743353b4308f13cc980718a6bbcf319d7e8f802;==LStr!G"YW,
+details!snapshoots;750;details!snapshoots;a5888715@drdrb.net;fd71cf1542e6502d7aa102c015bbb2044f55fa8d;L?LNB%6|/ZGC
+test123;1850;krzy.zaor;krzy.zaor@safe-mail.net;55ed1665390105282422f937fe7e4e4349fb59eb;f8!:&X#@mf\,
+123123;1702;Interface™;interface3@safe-mail.net;85c1e8ad42fee0d9f8d91339839a1b38d017d709;QO{a=W]i6GEs

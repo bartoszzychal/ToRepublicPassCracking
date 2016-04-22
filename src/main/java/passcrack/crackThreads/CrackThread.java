@@ -20,20 +20,17 @@ public class CrackThread {
 		crack = new Crack();
 		Reader dictionaryReader = new Reader();
 		Writer writer = new Writer();
-		//String dictionary = Utils.MEDIUM_BASE;
-		String dictionary2 = Utils.GIGANT_BASE_PART+62;
+		String dictionary2 = Utils.GIGANT_BASE_PART+70;
 		try {
 			dictionaryReader.prepare(
 					Utils.DICTIONARY_PATH + dictionary2+Utils.TXT);
-//			dictionaryReader.prepare(
-//					Utils.DICTIONARY_PATH + dictionary+Utils.TXT);
-			//writer.prepare(Utils.WYNIK_PATH+Utils.WYNIK_FILENAME +dateFormat.format(new Date())+ "_used_dic_"+ dictionary+ Utils.CSV);
 			writer.prepare(Utils.WYNIK_PATH+Utils.WYNIK_FILENAME +dateFormat.format(new Date())+ "_used_dic_"+ dictionary2+ Utils.CSV);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		crack.setDictionaryReader(dictionaryReader);
 		crack.setWriter(writer);
+		crack.setSkip(0.89);
 	}
 
 	public void execute() {

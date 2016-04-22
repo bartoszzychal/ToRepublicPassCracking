@@ -2,9 +2,7 @@ package passcrack.crack;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 import passcrack.DictionaryReader.Reader;
 import passcrack.db.DatabaseConnect;
@@ -22,6 +20,7 @@ public class Crack implements Runnable {
 	private final DatabaseConnect database = new DatabaseConnect();
 	private Reader dictionaryReader = null;
 	private Writer writer = null;
+	private double skip = 0;
 
 	public Crack() {
 		database.preprareConnectingWithDatabase(Utils.COM_MYSQL_JDBC_DRIVER, Utils.JDBC_MYSQL_LOCALHOST_DATABASE, Utils.user, Utils.password);
@@ -35,8 +34,8 @@ public class Crack implements Runnable {
 	public void decode() throws IOException, Exception {
 		long word_cunter = 0;
 		long start = System.currentTimeMillis();
-		writer.write("Password;User id;username;email;hash sha1(salt+sha1(Password));salt");
-		int skipped_word = (int)(0.55*WORD_DICTIONARY);
+		writeHeaders();
+		int skipped_word = (int)(skip*WORD_DICTIONARY);
 		dictionaryReader.skip(skipped_word);
 		word_cunter=+skipped_word;
 		while (dictionaryReader.ready()) {
@@ -56,7 +55,12 @@ public class Crack implements Runnable {
 			});
 			
 		}
+		writer.close();
 		dictionaryReader.close();
+	}
+
+	private void writeHeaders() {
+		writer.write("Password;User id;username;email;hash sha1(salt+sha1(Password));salt");
 	}
 
 	public void setWriter(Writer wr) {
@@ -65,6 +69,10 @@ public class Crack implements Runnable {
 
 	public void setDictionaryReader(Reader dr) {
 		this.dictionaryReader = dr;
+	}
+
+	public void setSkip(double skip) {
+		this.skip = skip;
 	}
 
 	@Override

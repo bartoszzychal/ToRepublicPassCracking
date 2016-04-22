@@ -1,7 +1,5 @@
 package passcrack.data;
 
-import java.io.IOException;
-
 import passcrack.DictionaryReader.Reader;
 import passcrack.utils.Utils;
 import passcrack.writer.Writer;
