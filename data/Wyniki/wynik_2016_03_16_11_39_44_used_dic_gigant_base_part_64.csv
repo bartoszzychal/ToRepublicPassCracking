@@ -1,2 +1,0 @@
-Password;User id;username;email;hash sha1(salt+sha1(Password));salt
-mariembourg;105;bischin;bbischin@safe-mail.net;77e78fe0066b9b255486724af0369ea25727ca67;+k.x=oB9%d5C

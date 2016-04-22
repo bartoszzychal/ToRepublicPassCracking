@@ -1,6 +1,0 @@
-Password;User id;username;email;hash sha1(salt+sha1(Password));salt
-Qwertyu8;80;kalinski;robert.kalinski@onet.pl;0763dee08a94933c82356900a40d8bc9c891c8c4;/N\ek(C3D3r.
-qwertyuiopasdfg;1892;mikolaj;nuyepaz@techgroup.me;ad6fe99eb4c9c5c51c4624bcf171be5cdb5f3a34;(.*.7Xr=KmdI
-qwerty111;57;ancymon;ancymon@safe-mail.pl;48af1126cfb9594c9bee789e5e967a1410d3a337;mnwuh~k;H$qa
-dupa1234;136;kwar;kwar@tormail.org;5026db637dd8abfb399d822fba864103ff2334d3;=b*5CVezUS3<
-cocacolacocacola;1011;talataj;talataj@safe-mail.net;8ffa084311da8ec9baf58f0dd36351f1126b6d2f;NfMSnOF#6~3P

@@ -1,4 +1,0 @@
-Password;User id;username;email;hash sha1(salt+sha1(Password));salt
-passwordpassword;1691;agronom;agronom@safe-mail.net;e71ddc7ebb297de5080ee072caae65399e5cedff;QKtXw_Fa\2+e
-Polisz123;115;polisz;itsys@safe-mail.net;d30b8eb577320bccf328be1207974ff032a55d7f;H>Vp>aO$v`g?
-tymczasowe;192;marcelixszpak;szpak@tormail.org;a302a8e36fd0254a53b6ea294a48254e5f189414;1EX8b@Zo9\v&

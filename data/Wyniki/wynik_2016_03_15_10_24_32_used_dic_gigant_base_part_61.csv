@@ -1,9 +1,0 @@
-Password;User id;username;email;hash sha1(salt+sha1(Password));salt
-1234567890123456;353;R?czka;raczka@wp.pl;25286581ee4796ffc6503d4acc0c77bfcecc67bf;0~@*b^&mhv}=
-qwerty666666;104;karmel;karmel@safe-mail.net;de9fafb8d85351275293842abcd5fdca2dc8165f;faIq\Uf.~L]|
-Revenge1;4;Revenge;revenge@safe-mail.net;3a5bf381bc78bb4fe22cccabcaefa76db1afbe48;S9|Wx_[F;u)l
-qwerty123456789;1583;D.Seaman;seaman@safe-mail.net;afd725ac0095635b6087382b6853b1cb68c0b567;}uCWja2LR(m3
-qwerty123;94;handlarz;handlarz@safe-mail.net;92b71fd4b4147a291090a9d098cada4b049c0e08;*wP:yP>{Ao?B
-qwerty123;98;Fafik;fafik@tormail.org;c4f0b9168d9a6ad77f746fd8cfccee4d7f6dd887;2(fvy:?kwF%^
-qwerty123;236;lysyjoe;lysyjoe@safe-mail.net;0af33a5063c480c731ef2cae7bd144161f935604;<GSU}!3!t_3j
-qwerty123;1312;Napoleon;napoleon@safe-mail.net;e0c5a4a9cde5ba946a0218bd7e9643b01f8a968a;?;whSL7id7tJ

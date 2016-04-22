@@ -1,1 +1,0 @@
-Password;User id;username;email;hash sha1(salt+sha1(Password));salt
